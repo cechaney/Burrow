@@ -1,0 +1,8 @@
+{
+  "appName": "goco",
+  "port": 8080,
+  "stuff": {
+    "message": "Hi!"
+  },
+  "logLevel": "INFO"
+}
