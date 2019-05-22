@@ -11,9 +11,10 @@ var Logger = initLogging()
 
 func initLogging() *logrus.Logger {
 
+	//TODO: Need to add more appenders
 	logger := logrus.New()
 
-	logger.SetFormatter(&logrus.JSONFormatter{})
+	// logger.SetFormatter(&logrus.JSONFormatter{})
 
 	logLevel := Config.GetString("logLevel")
 
