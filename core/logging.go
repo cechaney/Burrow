@@ -4,37 +4,41 @@ import (
 	"strings"
 
 	"github.com/sirupsen/logrus"
+	"github.com/spf13/viper"
 )
 
 //Logger wraps a logrus Logger to provide a common logging config
-var Logger = initLogging()
+var Logger = logrus.New()
 
-func initLogging() *logrus.Logger {
+func init() {
 
-	//TODO: Need to add more appenders
-	logger := logrus.New()
+}
 
-	// logger.SetFormatter(&logrus.JSONFormatter{})
+//ConfigureLogger sets up the log level based on a Viper config
+func ConfigureLogger(config *viper.Viper) {
 
-	logLevel := Config.GetString("logLevel")
+	Logger.SetFormatter(&logrus.JSONFormatter{})
+
+	logLevel := config.GetString("logLevel")
 
 	logLevel = strings.ToUpper(logLevel)
 
-	switch logLevel {
-	case "DEBUG":
-		logger.SetLevel(logrus.DebugLevel)
-	case "INFO":
-		logger.SetLevel(logrus.InfoLevel)
-	case "WARN":
-		logger.SetLevel(logrus.WarnLevel)
-	case "ERROR":
-		logger.SetLevel(logrus.ErrorLevel)
-	case "FATAL":
-		logger.SetLevel(logrus.FatalLevel)
-	default:
-		logger.SetLevel(logrus.InfoLevel)
+	if len(logLevel) == 0 {
+		logLevel = "INFO"
 	}
 
-	return logger
-
+	switch logLevel {
+	case "DEBUG":
+		Logger.SetLevel(logrus.DebugLevel)
+	case "INFO":
+		Logger.SetLevel(logrus.InfoLevel)
+	case "WARN":
+		Logger.SetLevel(logrus.WarnLevel)
+	case "ERROR":
+		Logger.SetLevel(logrus.ErrorLevel)
+	case "FATAL":
+		Logger.SetLevel(logrus.FatalLevel)
+	default:
+		Logger.SetLevel(logrus.InfoLevel)
+	}
 }

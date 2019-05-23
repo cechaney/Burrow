@@ -12,9 +12,9 @@ import (
 const portEnvVarName = "ENV_BURROW_PORT"
 
 //Config wraps viper so we don't have snakes all over our app
-var Config = initConfig()
+var Config *viper.Viper
 
-func initConfig() *viper.Viper {
+func init() {
 
 	/*
 		Configuration supports 4 different patterns
@@ -57,6 +57,6 @@ func initConfig() *viper.Viper {
 		viper.Set("port", envPort)
 	}
 
-	return viper.GetViper()
+	Config = viper.GetViper()
 
 }

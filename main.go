@@ -2,20 +2,39 @@ package main
 
 import (
 	"net/http"
+	"time"
 
 	"github.com/cechaney/burrow/core"
 )
 
 func main() {
 
-	core.Logger.Info("Booting up...")
+	core.ConfigureLogger(core.Config)
+	core.ConfigureStatic(core.Static)
+	core.AttachRouter("/")
 
-	http.Handle("/", http.FileServer(core.Static))
-
+	//Get the configured port
 	port := core.Config.GetString("port")
 
-	core.Logger.Info("Listening on port: " + port)
+	if len(port) <= 0 {
+		core.Logger.Panic("No port specified")
+		panic("Failed to start because no port configured")
+	}
 
-	http.ListenAndServe(":"+port, nil)
+	//Configure and start the app
+	app := &http.Server{
+		Handler:      core.Router,
+		Addr:         "127.0.0.1:" + port,
+		WriteTimeout: 15 * time.Second,
+		ReadTimeout:  15 * time.Second,
+	}
+
+	core.Logger.Infof("App started on port %s", port)
+
+	core.Logger.Fatal(app.ListenAndServe())
+
+}
+
+func startApp() {
 
 }

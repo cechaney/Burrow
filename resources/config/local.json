@@ -1,8 +1,5 @@
 {
-  "appName": "goco",
-  "port": 8080,
-  "stuff": {
-    "message": "Hi!"
-  },
-  "logLevel": "INFO"
+  "appName": "burrow",
+  "logLevel": "INFO",
+  "port": 8080
 }

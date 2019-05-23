@@ -11,6 +11,7 @@ require (
 	github.com/gobuffalo/genny v0.1.1 // indirect
 	github.com/gobuffalo/gogen v0.1.1 // indirect
 	github.com/gobuffalo/packr v1.25.0
+	github.com/gorilla/mux v1.7.2
 	github.com/karrick/godirwalk v1.10.3 // indirect
 	github.com/kr/pty v1.1.4 // indirect
 	github.com/magiconair/properties v1.8.1 // indirect
