@@ -9,6 +9,8 @@ import (
 	"github.com/spf13/viper"
 )
 
+const portEnvVarName = "ENV_BURROW_PORT"
+
 //Config wraps viper so we don't have snakes all over our app
 var Config = initConfig()
 
@@ -47,12 +49,12 @@ func initConfig() *viper.Viper {
 	}
 
 	//Get the port set by environment variable
-	viper.BindEnv("ENV_BURROW_PORT")
+	viper.BindEnv(portEnvVarName)
 
-	envBurrowPort := viper.GetString("ENV_BURROW_PORT")
+	envPort := viper.GetString(portEnvVarName)
 
-	if len(envBurrowPort) > 0 {
-		viper.Set("port", envBurrowPort)
+	if len(envPort) > 0 {
+		viper.Set("port", envPort)
 	}
 
 	return viper.GetViper()
