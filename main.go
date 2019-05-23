@@ -8,15 +8,11 @@ import (
 
 func main() {
 
-	core.Logger.Info("We are go!")
+	core.Logger.Info("Booting up...")
 
 	http.Handle("/", http.FileServer(core.Static))
 
 	port := core.Config.GetString("port")
-
-	if len(port) <= 0 {
-		port = core.Config.GetString("ENV_PORT")
-	}
 
 	core.Logger.Info("Listening on port: " + port)
 
