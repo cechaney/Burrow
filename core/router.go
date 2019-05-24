@@ -27,8 +27,12 @@ func ConfigureMiddleware() {
 
 }
 
-//ConfigureHandlers registers an array of handlers to router
-func ConfigureHandlers() {
+//ConfigureControllers registers an array of controllers to the router
+func ConfigureControllers(controllers []Controller) {
+
+	for _, controller := range controllers {
+		Router.HandleFunc(controller.Path, controller.Handler)
+	}
 
 }
 

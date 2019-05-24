@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/cechaney/burrow/controllers"
 	"github.com/cechaney/burrow/core"
 )
 
@@ -12,6 +13,8 @@ func main() {
 	core.ConfigureLogger(core.Config)
 	core.ConfigureStatic(core.Static)
 	core.AttachRouter("/")
+
+	core.ConfigureControllers(controllers.GetControllers())
 
 	//Get the configured port
 	port := core.Config.GetString("port")
