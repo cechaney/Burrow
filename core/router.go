@@ -23,15 +23,10 @@ func ConfigureStatic(static packr.Box) {
 }
 
 //ConfigureMiddleware registers an array of middleware to the router
-func ConfigureMiddleware() {
+func ConfigureMiddleware(middlewares []mux.MiddlewareFunc ) {
 
-}
-
-//ConfigureControllers registers an array of controllers to the router
-func ConfigureControllers(controllers []Controller) {
-
-	for _, controller := range controllers {
-		Router.HandleFunc(controller.Path, controller.Handler)
+	for _, m := range middlewares {
+		Router.Use(m)
 	}
 
 }
@@ -39,4 +34,13 @@ func ConfigureControllers(controllers []Controller) {
 //AttachRouter attached the handler to a specified path
 func AttachRouter(path string) {
 	http.Handle(path, Router)
+}
+
+//ConfigureControllers registers an array of controllers to the router
+func ConfigureControllers(controllers []Controller) {
+
+	for _, c := range controllers {
+		Router.HandleFunc(c.Path, c.Handler)
+	}
+
 }
