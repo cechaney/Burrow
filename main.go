@@ -12,7 +12,7 @@ func main() {
 
 	core.ConfigureLogger(core.Config)
 	core.ConfigureStatic(core.Static)
-	core.AttachRouter("/")
+	core.AttachRouter(core.Config.GetString("context"))
 
 	core.ConfigureControllers(controllers.GetControllers())
 
