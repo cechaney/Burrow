@@ -40,11 +40,15 @@ func AttachRouter(path string) {
 //ConfigureControllers registers an array of controllers to the router
 func ConfigureControllers(controllers []Controller) {
 
+	rescue := handlers.RecoveryHandler()
+
 	for _, c := range controllers {
 
 		compressed := handlers.CompressHandler(c.Handler)
 
-		Router.Handle(c.Path, compressed)
+		protected := rescue(compressed)
+
+		Router.Handle(c.Path, protected)
 	}
 
 }
