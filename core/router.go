@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gobuffalo/packr"
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 )
 
@@ -23,7 +24,7 @@ func ConfigureStatic(static packr.Box) {
 }
 
 //ConfigureMiddleware registers an array of middleware to the router
-func ConfigureMiddleware(middlewares []mux.MiddlewareFunc ) {
+func ConfigureMiddleware(middlewares []mux.MiddlewareFunc) {
 
 	for _, m := range middlewares {
 		Router.Use(m)
@@ -40,7 +41,10 @@ func AttachRouter(path string) {
 func ConfigureControllers(controllers []Controller) {
 
 	for _, c := range controllers {
-		Router.HandleFunc(c.Path, c.Handler)
+
+		compressed := handlers.CompressHandler(c.Handler)
+
+		Router.Handle(c.Path, compressed)
 	}
 
 }

@@ -13,6 +13,7 @@ func accessLogMiddleware(next http.Handler) http.Handler {
 		core.Logger.Info(r.RequestURI)
 
 		next.ServeHTTP(w, r)
+
 	})
 }
 
