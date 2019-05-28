@@ -1,13 +1,13 @@
 package controllers
 
 import (
-	"net/http"
 	"html/template"
+	"net/http"
 
 	"github.com/cechaney/burrow/core"
 )
 
-type pagedata struct{
+type htmlPageData struct {
 	Message string
 }
 
@@ -16,29 +16,32 @@ func htmlHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "text/html")
 
-	data := pagedata{"Hi!"}
+	data := htmlPageData{"Have fun digging around fellow gophers."}
 
-	content := `
-	<html>
-		<head>
-			<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
-		</head>
-		<body>
-			<h1>{{.Message}}</h1>
-		</body>
-	</html>
-	`
-	t, err := template.New("html").Parse(content)
+	content, err := core.Templates.FindString("index.html")
 
 	if err != nil {
-		
+
 		core.Logger.Error(err)
 
 		http.Error(w, "", http.StatusInternalServerError)
 
 	} else {
-		t.Execute(w, data)
+
+		t, err := template.New("html").Parse(content)
+
+		if err != nil {
+
+			core.Logger.Error(err)
+
+			http.Error(w, "", http.StatusInternalServerError)
+
+		} else {
+			t.Execute(w, data)
+		}
+
 	}
+
 }
 
 //GetHTMLController builds and returns the htmlHandler

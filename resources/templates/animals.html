@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+    <style>
+        * {margin: 0; padding: 0;}
+        body{
+          font-family: sans-serif;
+          margin: 10px;
+
+        }
+        #container {height: 100%; width:100%; font-size: 0; margin-top: 15px;}
+        #left, #middle, #right {display: inline-block; *display: inline; zoom: 1; vertical-align: top; font-size: 12px;}
+        #left {width: 33%;}
+        #middle {width: 33%;}
+        #right {width: 33%;}
+      </style>
+  </head>
+  <body>
+    <h1>Enjoy some randon animal pictures</h1>
+    <hr/>
+    <div id="container">
+      <div id="left">
+          <h2>Dog</h2>
+          <div><img src="{{ .Dog}}" style="width: 300px;"/></div>
+      </div>
+      <div id="middle">
+          <h2>Cat</h2>
+          <div><img src="{{ .Cat}}" style="width: 300px;"/></div>
+      </div>
+      <div id="right">
+          <h2>Fox</h2>
+          <div><img src="{{ .Fox}}" style="width: 300px;"/></div>
+      </div>
+    </div>
+  </body>
+</html>

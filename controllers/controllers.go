@@ -14,6 +14,7 @@ func GetControllers() []core.Controller {
 		GetFaviconController(),
 		GetHTMLController(),
 		GetJSONController(),
+		GetAnimalController(),
 		//TODO: add Mustache controller
 	}
 
