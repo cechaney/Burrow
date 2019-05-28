@@ -17,7 +17,7 @@ var Config *viper.Viper
 func init() {
 
 	/*
-		Configuration supports 4 different patterns
+		Configuration supports 3 different patterns
 		===========================================================================
 		1. Environment variables: Just ENV_PORT for now.  Add more as needed
 		2. JSON config file: File location set with the -config cmd line option
