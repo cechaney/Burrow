@@ -27,10 +27,6 @@ func ConfigureLogger(config *viper.Viper) {
 
 	logLevel := strings.ToUpper(config.GetString("logLevel"))
 
-	if len(logLevel) == 0 {
-		logLevel = "INFO"
-	}
-
 	switch logLevel {
 	case "DEBUG":
 		Logger.SetLevel(logrus.DebugLevel)
