@@ -1,10 +1,10 @@
 {
   "appName": "burrow",
-  "logLevel": "INFO",
+  "logLevel": "info",
+  "logFormat": "text",
   "port": 8080,
   "context": "/",
   "address": "127.0.0.1",
   "writeTimeout": "15s",
-  "readTimeout": "15s",
-  "logFormat": "text"
+  "readTimeout": "15s"
 }
