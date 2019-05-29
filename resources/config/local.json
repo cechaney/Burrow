@@ -5,5 +5,6 @@
   "context": "/",
   "address": "127.0.0.1",
   "writeTimeout": "15s",
-  "readTimeout": "15s"
+  "readTimeout": "15s",
+  "logFormat": "text"
 }
