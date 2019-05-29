@@ -17,9 +17,7 @@ func init() {
 //ConfigureLogger sets up the log level based on a Viper config
 func ConfigureLogger(config *viper.Viper) {
 
-	logFormat := config.GetString("logFormat")
-
-	logFormat = strings.ToUpper(logFormat)
+	logFormat := strings.ToUpper(config.GetString("logFormat"))
 
 	if logFormat == "JSON" {
 		Logger.SetFormatter(&logrus.JSONFormatter{})
@@ -27,9 +25,7 @@ func ConfigureLogger(config *viper.Viper) {
 		Logger.SetFormatter(&logrus.TextFormatter{})
 	}
 
-	logLevel := config.GetString("logLevel")
-
-	logLevel = strings.ToUpper(logLevel)
+	logLevel := strings.ToUpper(config.GetString("logLevel"))
 
 	if len(logLevel) == 0 {
 		logLevel = "INFO"
