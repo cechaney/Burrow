@@ -11,10 +11,6 @@ import (
 //Router wraps the Gorilla mux so we don't have apes all over our app
 var Router = mux.NewRouter()
 
-func init() {
-
-}
-
 //ConfigureStatic takes a packr.Box to use for /static/ path assets
 func ConfigureStatic(static packr.Box) {
 

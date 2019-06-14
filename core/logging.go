@@ -10,10 +10,6 @@ import (
 //Logger wraps a logrus Logger to provide a common logging config
 var Logger = logrus.New()
 
-func init() {
-
-}
-
 //ConfigureLogger sets up the log level based on a Viper config
 func ConfigureLogger(config *viper.Viper) {
 

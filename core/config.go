@@ -14,7 +14,8 @@ const portEnvVarName = "ENV_BURROW_PORT"
 //Config wraps viper so we don't have snakes all over our app
 var Config *viper.Viper
 
-func init() {
+//InitConfig inits the global config.  Use core.Config to access values
+func InitConfig() {
 
 	/*
 		Configuration supports 3 different patterns

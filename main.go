@@ -12,6 +12,7 @@ import (
 
 func main() {
 
+	core.InitConfig()
 	core.ConfigureLogger(core.Config)
 	core.ConfigureStatic(core.Static)
 	core.AttachRouter(core.Config.GetString("context"))
