@@ -27,7 +27,6 @@ func main() {
 		panic(err)
 	}
 
-	//Configure and start the app
 	app := &http.Server{
 		Handler:      core.Router,
 		Addr:         serverConfig.Address + ":" + serverConfig.Port,
