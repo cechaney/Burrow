@@ -20,9 +20,9 @@ func ConfigureStatic(static packr.Box) {
 }
 
 //ConfigureMiddleware registers an array of middleware to the router
-func ConfigureMiddleware(middlewares []mux.MiddlewareFunc) {
+func ConfigureMiddleware(middleware []mux.MiddlewareFunc) {
 
-	for _, m := range middlewares {
+	for _, m := range middleware {
 		Router.Use(m)
 	}
 
