@@ -41,12 +41,12 @@ func ConfigureControllers(controllers []Controller) {
 	for _, c := range controllers {
 
 		//Add GZIP compression to every handler
-		compressed := handlers.CompressHandler(c.Handler)
+		controller := handlers.CompressHandler(c.Handler)
 
 		//Add panic protection to every handler
-		protected := rescue(compressed)
+		controller = rescue(controller)
 
-		Router.Handle(c.Path, protected)
+		Router.Handle(c.Path, controller)
 	}
 
 }
