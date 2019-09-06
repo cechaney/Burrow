@@ -79,3 +79,5 @@ func getServerConfig() (core.ServerConfig, error) {
 	return config, nil
 
 }
+
+//Just testing
